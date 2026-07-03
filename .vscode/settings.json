@@ -7,12 +7,5 @@
   },
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true
-  },
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "never",
-    "source.fixAll.oxc": "explicit",
-    "source.organizeImports": "never",
-  },
-  "oxc.enable.oxfmt": false
+  }
 }
-  
