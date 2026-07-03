@@ -1,16 +1,12 @@
-@import url('./tailwind.css');
+@import url('./variable.css');
+@import 'tailwindcss';
 
-* {
-  box-sizing: border-box;
+@plugin "@iconify/tailwind4" {
+  prefix: "iconify";
+  scale: 1.2;
 }
 
-html,
-body,
-#app {
-  min-height: 100%;
-}
+@custom-variant dark (&:where([data-theme="dark"] *));
 
-body {
-  margin: 0;
-}
+
 

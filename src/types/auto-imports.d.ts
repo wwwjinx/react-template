@@ -30,6 +30,7 @@ declare global {
   const stringifyQuery: typeof import('../utils/request/tools/queryString').stringifyQuery
   const use: typeof import('react').use
   const useActionState: typeof import('react').useActionState
+  const useAppStore: typeof import('../stores/app').useAppStore
   const useAuthStore: typeof import('../stores/auth').useAuthStore
   const useCallback: typeof import('react').useCallback
   const useContext: typeof import('react').useContext
@@ -54,6 +55,7 @@ declare global {
   const useSearch: typeof import('@tanstack/react-router').useSearch
   const useState: typeof import('react').useState
   const useSyncExternalStore: typeof import('react').useSyncExternalStore
+  const useTheme: typeof import('../hooks/useTheme').useTheme
   const useToken: typeof import('../utils/handleToken').useToken
   const useTransition: typeof import('react').useTransition
 }

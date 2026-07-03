@@ -9,6 +9,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   const router = useRouter()
+  useTheme()
 
   return (
     <>
