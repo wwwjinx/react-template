@@ -13,8 +13,6 @@
     "source.fixAll.oxc": "explicit",
     "source.organizeImports": "never",
   },
-  "[json][jsonc]": {
-    "editor.formatOnSave": true, // 避免与其他格式化工具冲突
-  },
   "oxc.enable.oxfmt": false
 }
+  
