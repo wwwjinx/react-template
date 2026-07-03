@@ -23,6 +23,8 @@ const a = [
   5, 6, 67, 7, 8,
 ]
 
+console.log('sss ')
+
 const rootElement = document.getElementById('app')!
 
 if (!rootElement.innerHTML) {
