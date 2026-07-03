@@ -8,11 +8,11 @@
   ],
   "jsPlugins": [
     "eslint-plugin-antfu",
-    "eslint-plugin-unused-imports",
     "eslint-plugin-command",
     "eslint-plugin-perfectionist",
     "@stylistic/eslint-plugin",
-    "eslint-plugin-regexp"
+    "eslint-plugin-regexp",
+    "eslint-plugin-unused-imports"
   ],
   "categories": {
     "correctness": "off"
@@ -31,6 +31,42 @@
         "allowSeparatedGroups": true,
         "ignoreDeclarationSort": true,
         "ignoreMemberSort": false
+      }
+    ],
+    "perfectionist/sort-imports": [
+      "error",
+      {
+        "order": "asc",
+        "type": "natural",
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ]
+      }
+    ],
+    "perfectionist/sort-exports": [
+      "error",
+      {
+        "order": "asc",
+        "type": "natural"
+      }
+    ],
+    "perfectionist/sort-named-exports": [
+      "error",
+      {
+        "order": "asc",
+        "type": "natural"
+      }
+    ],
+    "perfectionist/sort-named-imports": [
+      "error",
+      {
+        "order": "asc",
+        "type": "natural"
       }
     ],
     "accessor-pairs": [
@@ -248,7 +284,7 @@
       "error",
       "never"
     ],
-    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-imports": "warn",
     "use-isnan": [
       "error",
       {
@@ -268,27 +304,6 @@
       "never"
     ],
     "command/command": "error",
-    "perfectionist/sort-exports": [
-      "error",
-      {
-        "order": "asc",
-        "type": "natural"
-      }
-    ],
-    "perfectionist/sort-named-exports": [
-      "error",
-      {
-        "order": "asc",
-        "type": "natural"
-      }
-    ],
-    "perfectionist/sort-named-imports": [
-      "error",
-      {
-        "order": "asc",
-        "type": "natural"
-      }
-    ],
     "antfu/import-dedupe": "error",
     "antfu/no-import-dist": "error",
     "antfu/no-import-node-modules-by-path": "error",
@@ -747,6 +762,44 @@
   "overrides": [
     {
       "files": [
+        "**/.oxlintrc.json"
+      ],
+      "jsPlugins": [
+        "eslint-plugin-jsonc"
+      ],
+      "rules": {
+        "jsonc/no-dupe-keys": "error",
+        "jsonc/sort-keys": [
+          "error",
+          {
+            "order": [
+              "$schema",
+              "plugins",
+              "jsPlugins",
+              "rules",
+              "overrides",
+              "ignorePatterns"
+            ],
+            "pathPattern": "^$"
+          },
+          {
+            "pathPattern": "^(rules|plugins|jsPlugins|overrides|ignorePatterns)$",
+            "order": {
+              "type": "asc"
+            }
+          },
+          // 4️⃣ overrides 数组内每个元素的 rules 对象：键名按 asc 排序
+          {
+            "pathPattern": "^overrides\\[\\d+\\]\\.(rules|plugins|jsPlugins|overrides|ignorePatterns)$",
+            "order": {
+              "type": "asc"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "files": [
         "**/*.?([cm])[jt]s?(x)"
       ],
       "rules": {
@@ -786,7 +839,7 @@
       "plugins": [
         "node",
         "jsdoc",
-        "unicorn"
+        "unicorn",
       ]
     },
     {
@@ -925,7 +978,7 @@
       ],
       "plugins": [
         "vitest",
-        "typescript" 
+        "typescript"
       ]
     },
     {
@@ -1143,127 +1196,6 @@
     },
     {
       "files": [
-        "**/[jt]sconfig.json",
-        "**/[jt]sconfig.*.json"
-      ],
-      "rules": {
-        "jsonc/sort-keys": [
-          "error",
-          {
-            "order": [
-              "extends",
-              "compilerOptions",
-              "references",
-              "files",
-              "include",
-              "exclude"
-            ],
-            "pathPattern": "^$"
-          },
-          {
-            "order": [
-              "incremental",
-              "composite",
-              "tsBuildInfoFile",
-              "disableSourceOfProjectReferenceRedirect",
-              "disableSolutionSearching",
-              "disableReferencedProjectLoad",
-              "target",
-              "jsx",
-              "jsxFactory",
-              "jsxFragmentFactory",
-              "jsxImportSource",
-              "lib",
-              "moduleDetection",
-              "noLib",
-              "reactNamespace",
-              "useDefineForClassFields",
-              "emitDecoratorMetadata",
-              "experimentalDecorators",
-              "libReplacement",
-              "baseUrl",
-              "rootDir",
-              "rootDirs",
-              "customConditions",
-              "module",
-              "moduleResolution",
-              "moduleSuffixes",
-              "noResolve",
-              "paths",
-              "resolveJsonModule",
-              "resolvePackageJsonExports",
-              "resolvePackageJsonImports",
-              "typeRoots",
-              "types",
-              "allowArbitraryExtensions",
-              "allowImportingTsExtensions",
-              "allowUmdGlobalAccess",
-              "allowJs",
-              "checkJs",
-              "maxNodeModuleJsDepth",
-              "strict",
-              "strictBindCallApply",
-              "strictFunctionTypes",
-              "strictNullChecks",
-              "strictPropertyInitialization",
-              "allowUnreachableCode",
-              "allowUnusedLabels",
-              "alwaysStrict",
-              "exactOptionalPropertyTypes",
-              "noFallthroughCasesInSwitch",
-              "noImplicitAny",
-              "noImplicitOverride",
-              "noImplicitReturns",
-              "noImplicitThis",
-              "noPropertyAccessFromIndexSignature",
-              "noUncheckedIndexedAccess",
-              "noUnusedLocals",
-              "noUnusedParameters",
-              "useUnknownInCatchVariables",
-              "declaration",
-              "declarationDir",
-              "declarationMap",
-              "downlevelIteration",
-              "emitBOM",
-              "emitDeclarationOnly",
-              "importHelpers",
-              "importsNotUsedAsValues",
-              "inlineSourceMap",
-              "inlineSources",
-              "mapRoot",
-              "newLine",
-              "noEmit",
-              "noEmitHelpers",
-              "noEmitOnError",
-              "outDir",
-              "outFile",
-              "preserveConstEnums",
-              "preserveValueImports",
-              "removeComments",
-              "sourceMap",
-              "sourceRoot",
-              "stripInternal",
-              "allowSyntheticDefaultImports",
-              "esModuleInterop",
-              "forceConsistentCasingInFileNames",
-              "isolatedDeclarations",
-              "isolatedModules",
-              "preserveSymlinks",
-              "verbatimModuleSyntax",
-              "erasableSyntaxOnly",
-              "skipDefaultLibCheck",
-              "skipLibCheck"
-            ],
-            "pathPattern": "^compilerOptions$"
-          }
-        ]
-      },
-      "jsPlugins": [
-        "eslint-plugin-jsonc"
-      ]
-    },
-    {
-      "files": [
         "**/*.y?(a)ml"
       ],
       "rules": {
@@ -1344,14 +1276,14 @@
         "no-alert": "off",
         "no-labels": "off",
         "no-lone-blocks": "off",
-        "no-unused-expressions": "off", 
+        "no-unused-expressions": "off",
         "no-unused-labels": "off",
         "no-unused-vars": "off",
         "@stylistic/comma-dangle": "off",
         "@stylistic/eol-last": "off",
         "@stylistic/padding-line-between-statements": "off",
         "unicode-bom": "off",
-        "unused-imports/no-unused-imports": "off",
+        "unused-imports/no-unused-imports": "warn",
         "no-redeclare": "off",
         "no-use-before-define": "off",
         "typescript/consistent-type-imports": "off",
@@ -1362,7 +1294,6 @@
       "jsPlugins": [
         "eslint-plugin-antfu",
         "@stylistic/eslint-plugin",
-        "eslint-plugin-unused-imports"
       ],
       "plugins": [
         "typescript"
@@ -1406,14 +1337,6 @@
       },
       "jsPlugins": [
         "eslint-plugin-antfu"
-      ]
-    },
-    {
-      "files": [
-        "**/*.d.?([cm])ts"
-      ],
-      "jsPlugins": [
-        "eslint-plugin-unused-imports"
       ]
     },
     {
