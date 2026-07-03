@@ -1,10 +1,10 @@
 import babel from '@rolldown/plugin-babel'
-import tailwindcss from '@tailwindcss/vite'
 import { devtools } from '@tanstack/devtools-vite'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig, loadEnv } from 'vite'
+import Tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.') as unknown as ImportMetaEnv
@@ -17,7 +17,7 @@ const config = defineConfig(({ mode }) => {
     },
     plugins: [
       devtools(),
-      tailwindcss(),
+      Tailwindcss(),
       tanstackRouter({
         target: 'react',
         autoCodeSplitting: true,

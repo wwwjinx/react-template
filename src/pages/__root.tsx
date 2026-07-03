@@ -27,7 +27,7 @@ function RootComponent() {
 
 function RootErrorComponent(...args: any[]) {
   return (
-    <div>
+    <div className="p-0.5">
       <h1>Root Error</h1>
       <p>Something went wrong at the root level.</p>
       {

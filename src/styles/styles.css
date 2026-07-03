@@ -1,9 +1,4 @@
-
-@plugin "@iconify/tailwind4" {
-  prefix: "iconify";
-  scale: 1.2;
-};
-@import 'tailwindcss' source('../');
+@import url('./tailwind.css');
 
 * {
   box-sizing: border-box;

@@ -1,4 +1,5 @@
 import { antfu } from '@antfu/eslint-config'
+import eslintPluginTailwindcss from "eslint-plugin-tailwindcss";
 
 export default antfu({
   react: {
@@ -19,9 +20,9 @@ export default antfu({
         html: true,
       }],
     },
-  },
+  }, 
 }, [{
-  rules: {
+  rules: { 
     'unused-imports/no-unused-vars': 'warn',
     'no-console': 'warn',
   },
@@ -29,6 +30,26 @@ export default antfu({
   files: ['**/*.js[x]'],
   plugins: ['eslint-plugin-react-hooks'],
 },
+{
+    // 2. Optional: extend an existing config preset
+    ...eslintPluginTailwindcss.configs.recommended,
+    settings: {
+      // 3. Define the tailwindcss settings with the MANDATORY cssConfigPath
+      tailwindcss: {
+        cssConfigPath: "./src/styles/tailwind.css",
+      },
+    },
+    // 4. Optional: customize the rules to your needs
+    rules: {
+      "tailwindcss/classnames-order": "warn",
+      "tailwindcss/no-arbitrary-value": "warn",
+      "tailwindcss/no-custom-classname": [
+        "warn",
+        { whitelist: ["custom\\-*"] },
+      ],
+      "tailwindcss/no-contradicting-classname": "warn",
+    },
+  },
 {
   files: ['**/tsconfig.json', '**/tsconfig.*.json', 'tsconfig.json', 'tsconfig.*.json'],
   rules: {
