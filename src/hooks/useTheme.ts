@@ -1,14 +1,11 @@
-import { useEffect } from 'react'
-
-import { useAppStore } from '@/stores/app'
+import { useThemeStore } from '@/stores/theme'
 
 export function useTheme() {
-  const theme = useAppStore(s => s.theme)
-  const setTheme = useAppStore(s => s.setTheme)
-  const toggleTheme = useAppStore(s => s.toggleTheme)
+  const theme = useThemeStore(s => s.theme)
+  const setTheme = useThemeStore(s => s.setTheme)
+  const toggleTheme = useThemeStore(s => s.toggleTheme)
 
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme
+  useLayoutEffect(() => {
   }, [theme])
 
   return { theme, setTheme, toggleTheme, isDark: theme === 'dark' }

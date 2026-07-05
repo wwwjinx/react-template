@@ -13,6 +13,7 @@ declare global {
   const ResultEnum: typeof import('../utils/request/type').ResultEnum
   const ShowMessage: typeof import('../utils/request/type').ShowMessage
   const Suspense: typeof import('react').Suspense
+  const THEME_STORAGE_KEY: typeof import('../stores/theme').THEME_STORAGE_KEY
   const alovaInstance: typeof import('../utils/request/index').alovaInstance
   const baseURL: typeof import('../utils/request/index').baseURL
   const cache: typeof import('react').cache
@@ -30,7 +31,7 @@ declare global {
   const stringifyQuery: typeof import('../utils/request/tools/queryString').stringifyQuery
   const use: typeof import('react').use
   const useActionState: typeof import('react').useActionState
-  const useAppStore: typeof import('../stores/app').useAppStore
+  const useAppStore: typeof import('../stores/theme').useThemeStore
   const useAuthStore: typeof import('../stores/auth').useAuthStore
   const useCallback: typeof import('react').useCallback
   const useContext: typeof import('react').useContext
@@ -56,11 +57,15 @@ declare global {
   const useState: typeof import('react').useState
   const useSyncExternalStore: typeof import('react').useSyncExternalStore
   const useTheme: typeof import('../hooks/useTheme').useTheme
+  const useThemeStore: typeof import('../stores/theme').useThemeStore
   const useToken: typeof import('../utils/handleToken').useToken
   const useTransition: typeof import('react').useTransition
 }
 // for type re-export
 declare global {
+  // @ts-ignore
+  export type { Theme, ThemeState, ThemeAction } from '../stores/theme'
+  import('../stores/theme')
   // @ts-ignore
   export type { ApiError, ApiResponse } from '../utils/request/type'
   import('../utils/request/type')

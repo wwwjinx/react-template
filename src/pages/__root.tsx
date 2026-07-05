@@ -15,6 +15,10 @@ function RootComponent() {
     <>
       <Outlet />
       <TanStackDevtools
+
+        config={{
+          sourceAction: 'copy-path',
+        }}
         plugins={[
           {
             name: 'TanStack Router',
