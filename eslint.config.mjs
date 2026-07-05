@@ -29,7 +29,7 @@ export default antfu({
     },
   },
   {
-  // 2. Optional: extend an existing config preset
+    // 2. Optional: extend an existing config preset
     ...eslintPluginTailwindcss.configs.recommended,
     settings: {
     // 3. Define the tailwindcss settings with the MANDATORY cssConfigPath
