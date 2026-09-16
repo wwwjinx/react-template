@@ -6,6 +6,7 @@ export function useTheme() {
   const toggleTheme = useThemeStore(s => s.toggleTheme)
 
   useLayoutEffect(() => {
+    document.documentElement.dataset.theme = theme
   }, [theme])
 
   return { theme, setTheme, toggleTheme, isDark: theme === 'dark' }

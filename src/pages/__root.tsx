@@ -1,3 +1,4 @@
+import type { ErrorComponentProps } from '@tanstack/react-router'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
@@ -15,7 +16,6 @@ function RootComponent() {
     <>
       <Outlet />
       <TanStackDevtools
-
         config={{
           sourceAction: 'copy-path',
         }}
@@ -30,16 +30,12 @@ function RootComponent() {
   )
 }
 
-function RootErrorComponent(...args: any[]) {
+function RootErrorComponent({ error }: ErrorComponentProps) {
   return (
     <div className="p-0.5">
       <h1>Root Error</h1>
       <p>Something went wrong at the root level.</p>
-      {
-        args.map((arg, index) => (
-          <pre key={index}>{JSON.stringify(arg)}</pre>
-        ))
-      }
+      <pre>{error instanceof Error ? error.message : String(error)}</pre>
     </div>
   )
 }
