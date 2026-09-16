@@ -13,11 +13,17 @@ export const Route = createFileRoute('/_auth/')({
 
 function Index() {
   const logout = useAuthStore(s => s.logout)
+  const navigate = useNavigate()
+
+  function handleLogout() {
+    logout()
+    navigate({ to: '/login' })
+  }
 
   return (
     <div>
       <h1>index home</h1>
-      <button type="button" onClick={logout}>
+      <button type="button" onClick={handleLogout}>
         clear token
       </button>
       <Outlet />
