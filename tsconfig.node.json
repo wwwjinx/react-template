@@ -3,22 +3,20 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "target": "es2023",
     "lib": ["ES2023"],
-    "types": ["node"],
-    "skipLibCheck": true,
-
-    /* Bundler mode */
     "module": "nodenext",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
     "moduleDetection": "force",
+    "types": ["node"],
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "nodenext",
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
     "noEmit": true,
-
-    /* Linting */
+    "skipLibCheck": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noUncheckedSideEffectImports": true
   },
-  "include": ["vite.config.ts", "./src/types/**/*.d.ts", "src/types/vite-env.d.ts"]
-
+  "include": ["vite.config.ts", "src/types/**/*.d.ts"]
 }

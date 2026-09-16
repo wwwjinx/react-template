@@ -4,12 +4,12 @@ import { devtools } from '@tanstack/devtools-vite'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import AutoImport from 'unplugin-auto-import/vite'
-import { defineConfig, loadEnv } from 'vite'
+import { loadEnv } from 'vite'
+import { defineConfig } from 'vitest/config'
 
-const config = defineConfig(({ mode }) => {
-  const env = loadEnv(mode, '.') as unknown as ImportMetaEnv
-
-  const { VITE_BASE_URL } = env
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, '.')
+  const baseURL = env.VITE_BASE_URL || '/api'
 
   return {
     resolve: {
@@ -31,7 +31,6 @@ const config = defineConfig(({ mode }) => {
             imports: ['useNavigate', 'useMatch', 'useRouter', 'useSearch', 'useParams'],
           },
         ],
-        // fix: tanstack router auto import not working with vite-plugin-react-pages
         include: [
           /\.[tj]sx?(?:\?.*)?$/,
         ],
@@ -43,15 +42,17 @@ const config = defineConfig(({ mode }) => {
     ],
     server: {
       proxy: {
-        [VITE_BASE_URL]: {
+        [baseURL]: {
           target: 'http://localhost:3000',
           changeOrigin: true,
           rewrite: path =>
-            path.replace(new RegExp(`^${VITE_BASE_URL}`), VITE_BASE_URL),
+            path.replace(new RegExp(`^${baseURL}`), baseURL),
         },
       },
     },
+    test: {
+      environment: 'jsdom',
+      passWithNoTests: true,
+    },
   }
 })
-
-export default config

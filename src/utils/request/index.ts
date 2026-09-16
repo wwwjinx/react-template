@@ -19,8 +19,8 @@ export const alovaInstance = createAlova({
   cacheFor: null,
   beforeRequest: (method) => {
     method.config.headers = {
-      ContentType: ContentTypeEnum.JSON,
-      Accept: 'application/json, text/plain, */*',
+      'Content-Type': ContentTypeEnum.JSON,
+      'Accept': 'application/json, text/plain, */*',
       ...method.config.headers,
     }
 
@@ -45,7 +45,7 @@ export const alovaInstance = createAlova({
 
     if (code !== ResultEnum.Success0 && code !== ResultEnum.Success200) {
       if (code === ResultEnum.Unauthorized && window.location.pathname !== import.meta.env.VITE_LOGIN_URL) {
-        redirect({ to: import.meta.env.VITE_LOGIN_URL })
+        throw redirect({ to: import.meta.env.VITE_LOGIN_URL })
       }
       if (meta?.hideNotify !== true) {
         console.error(`${msg}`)

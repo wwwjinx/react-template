@@ -15,6 +15,7 @@ export const Route = createFileRoute('/login')({
 const isDev = import.meta.env.DEV
 function LoginPage() {
   const login = useAuthStore(s => s.login)
+  const navigate = useNavigate()
   const [username, setUsername] = useState(isDev ? 'admin' : '')
   const [password, setPassword] = useState(isDev ? 'admin123' : '')
   const [error, setError] = useState('')
@@ -27,8 +28,8 @@ function LoginPage() {
     setError('')
     setLoading(true)
     try {
-      const res = await login(username, password)
-      console.log(res)
+      await login(username, password)
+      navigate({ to: '/' })
     }
     catch (err) {
       setError((err as Error).message)

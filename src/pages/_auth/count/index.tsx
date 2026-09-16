@@ -5,20 +5,17 @@ export const Route = createFileRoute('/_auth/count/')({
 })
 
 function Home() {
-  const state = Route.useLoaderData()
-
-  function handleClick() {
-    console.log('handleClick')
-  }
+  const count = useCountStore(s => s.count)
+  const increment = useCountStore(s => s.increment)
 
   return (
     <button
       type="button"
-      onClick={handleClick}
+      onClick={increment}
     >
       Add 1 to
       {' '}
-      {state}
+      {count}
       ?
     </button>
   )

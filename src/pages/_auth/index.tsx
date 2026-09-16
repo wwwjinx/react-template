@@ -1,6 +1,5 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
-// src/routes/_authenticated.tsx
 export const Route = createFileRoute('/_auth/')({
   beforeLoad: async ({ location }) => {
     const { user } = useAuthStore.getState()
@@ -13,16 +12,18 @@ export const Route = createFileRoute('/_auth/')({
 })
 
 function Index() {
-  const authstore = useAuthStore()
+  const logout = useAuthStore(s => s.logout)
+  const navigate = useNavigate()
 
   function handleLogout() {
-    authstore.logout()
+    logout()
+    navigate({ to: '/login' })
   }
 
   return (
     <div>
       <h1>index home</h1>
-      <button onClick={handleLogout}>
+      <button type="button" onClick={handleLogout}>
         clear token
       </button>
       <Outlet />

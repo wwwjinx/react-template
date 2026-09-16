@@ -48,12 +48,12 @@ export const useThemeStore = create<ThemeState & ThemeAction>()(
         theme: initTheme,
         setTheme: theme => set({ theme }),
         toggleTheme: (event) => {
-          console.log('toggleTheme', get().theme)
-
           const isDark = get().theme === 'dark'
 
           if (!isAppearanceTransition || !event) {
-            set({ theme: isDark ? 'light' : 'dark' })
+            const newTheme = isDark ? 'light' : 'dark'
+            set({ theme: newTheme })
+            document.documentElement.dataset.theme = newTheme
             return
           }
 
@@ -77,14 +77,13 @@ export const useThemeStore = create<ThemeState & ThemeAction>()(
               `circle(0px at ${x}px ${y}px)`,
               `circle(${endRadius}px at ${x}px ${y}px)`,
             ]
-            console.log('animate', isDark)
 
             document.documentElement.animate(
               {
                 clipPath: isDark ? clipPath.toReversed() : clipPath,
               },
               {
-                duration: 10000,
+                duration: 400,
                 easing: 'ease-in',
                 pseudoElement: isDark
                   ? '::view-transition-old(root)'
