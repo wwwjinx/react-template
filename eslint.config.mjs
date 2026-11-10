@@ -31,6 +31,8 @@ export default antfu({
     rules: {
       'unused-imports/no-unused-vars': 'warn',
       'no-console': 'warn',
+      // 关闭，可使 对象/数组 自由换行
+      'antfu/reasonable-newline': 'off',
     },
   },
   {
@@ -48,6 +50,19 @@ export default antfu({
         { whitelist: ['custom\\-*'] },
       ],
       'tailwindcss/no-contradicting-classname': 'warn',
+    },
+  },
+  {
+    files: ['pnpm-workspace.yaml'],
+    rules: {
+      // 只在此文件迁移 onlyBuiltDependencies，不强制套用 antfu 的 pnpm 默认安全项
+      'pnpm/yaml-enforce-settings': 'off',
+    },
+  },
+  {
+    files: ['**/routeTree.gen.ts'],
+    rules: {
+      'eslint-comments/no-unlimited-disable': 'off',
     },
   },
   {
