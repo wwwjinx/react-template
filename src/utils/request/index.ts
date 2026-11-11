@@ -94,24 +94,6 @@ axiosInstance.interceptors.response.use(
   },
 )
 
-export const http = {
-  Get<T>(url: string, config?: RequestConfig) {
-    return axiosInstance.get<unknown, T>(url, config)
-  },
-  Post<T>(url: string, data?: unknown, config?: RequestConfig) {
-    return axiosInstance.post<unknown, T>(url, data, config)
-  },
-  Put<T>(url: string, data?: unknown, config?: RequestConfig) {
-    return axiosInstance.put<unknown, T>(url, data, config)
-  },
-  Patch<T>(url: string, data?: unknown, config?: RequestConfig) {
-    return axiosInstance.patch<unknown, T>(url, data, config)
-  },
-  Delete<T>(url: string, config?: RequestConfig) {
-    return axiosInstance.delete<unknown, T>(url, config)
-  },
-}
-
 export function request<T = unknown>(config: RequestConfig) {
   return axiosInstance.request<unknown, T>(config)
 }
