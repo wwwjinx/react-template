@@ -16,7 +16,6 @@ declare global {
   const ShowMessage: typeof import('../utils/request/type').ShowMessage
   const Suspense: typeof import('react').Suspense
   const THEME_STORAGE_KEY: typeof import('../stores/theme').THEME_STORAGE_KEY
-  const alovaInstance: typeof import('../utils/request/index').alovaInstance
   const baseURL: typeof import('../utils/request/index').baseURL
   const cache: typeof import('react').cache
   const cacheSignal: typeof import('react').cacheSignal
@@ -24,9 +23,11 @@ declare global {
   const createRef: typeof import('react').createRef
   const forwardRef: typeof import('react').forwardRef
   const getToken: typeof import('../utils/handleToken').getToken
+  const http: typeof import('../utils/request/index').http
   const lazy: typeof import('react').lazy
   const memo: typeof import('react').memo
   const removeToken: typeof import('../utils/handleToken').removeToken
+  const request: typeof import('../utils/request/index').default
   const setToken: typeof import('../utils/handleToken').setToken
   const startTransition: typeof import('react').startTransition
   const stringifyQuery: typeof import('../utils/request/tools/queryString').stringifyQuery
@@ -66,7 +67,7 @@ declare global {
   export type { Theme, ThemeState, ThemeAction } from '../stores/theme'
   import('../stores/theme')
   // @ts-ignore
-  export type { ApiError, ApiResponse } from '../utils/request/type'
+  export type { ApiError, ApiResponse, RequestMeta, RequestConfig } from '../utils/request/type'
   import('../utils/request/type')
   // @ts-ignore
   export type { DictObject } from '../hooks/useDict'

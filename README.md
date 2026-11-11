@@ -1,6 +1,6 @@
 # React Template
 
-Vite + React + TypeScript SPA starter with [TanStack Router](https://tanstack.com/router), Tailwind CSS, Zustand, and Alova.
+Vite + React + TypeScript SPA starter with [TanStack Router](https://tanstack.com/router), Tailwind CSS, Zustand, and Axios.
 
 ## Requirements
 

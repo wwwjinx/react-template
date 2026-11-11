@@ -1,7 +1,9 @@
+import { http } from '@/utils/request'
+
 export interface LoginParams {
 
 }
 
-export function loginApi(_data: LoginParams) {
-  return alovaInstance
+export function loginApi(data: LoginParams) {
+  return http.Post('/login', data)
 }
